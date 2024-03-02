@@ -1,0 +1,76 @@
+#hello today we are going to write a code in oython to draw animated traffic light 
+#let's begin 
+#first import turtle
+import turtle
+#in this case we also have to inport time module library
+import time
+#set your screen
+screen=turtle.Screen() #remember to check your spelling and errors 
+screen.title("Animated traffic light ")
+screen.setup(width=200, height=400)
+
+#now screen setup is done
+#define a pen you can use any variable
+#i am using "pen"
+pen=turtle.Turtle()
+#Function to draw a single traffic light
+def draw_traffic_light(x,y,color):
+    pen.penup()
+    pen.goto(x,y)
+    pen.pendown()
+    pen.begin_fill()
+    pen.color(color)
+    pen.circle(50)
+    pen.end_fill()
+    
+#Mainloop to animate traffic light
+def animate_traffic_light():
+    while True:
+        draw_traffic_light(-150,0,"red")
+        draw_traffic_light(0,0,"gray")
+        draw_traffic_light(150,0,"gray")
+        time.sleep(2)
+        
+        draw_traffic_light(-150,0,"gray")
+        draw_traffic_light(0,0,"yellow")
+        draw_traffic_light(150,0,"gray")
+        time.sleep(1)
+        
+        draw_traffic_light(-150,0,"gray")
+        draw_traffic_light(0,0,"gray")
+        draw_traffic_light(150,0,"green")
+        time.sleep(2)
+        
+        draw_traffic_light(-150,0,"gray")
+        draw_traffic_light(0,0,"yellow")
+        draw_traffic_light(150,0,"gray")
+        time.sleep(1)
+        
+#function to draw outer boundary rectangele
+
+def rectangle(x,y,length,breadth,color):
+    pen.penup()
+    pen.goto(x,y)
+    pen.pendown()
+    pen.begin_fill()
+    pen.width(3)
+    pen.color("black")
+    pen.fillcolor(color)
+    
+    for _ in range(2):
+        pen.forward(breadth)
+        pen.right(90)
+        pen.forward(length)
+        pen.right(90)
+    pen.end_fill()
+    
+#Setup pen
+pen.speed(0)
+pen.hideturtle()
+#start animation
+
+rectangle(-300,200,300,600,"yellow")
+rectangle(-250,150,200,500,"orange")
+animate_traffic_light()
+
+#and that's all lets see it running
