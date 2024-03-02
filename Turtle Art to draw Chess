@@ -1,0 +1,51 @@
+import turtle
+
+screen = turtle.Screen()
+screen.setup(width=420, height=420)
+screen.bgcolor("white")
+
+pen = turtle.Turtle()
+pen.speed(0)
+pen.width(2)
+
+# Function to draw a single square
+def draw_square(color, size, x, y):
+    pen.penup()
+    pen.goto(x, y)
+    pen.pendown()
+    pen.color(color)
+    pen.begin_fill()
+    for _ in range(4):
+        pen.forward(size)
+        pen.right(90)
+    pen.end_fill()
+
+# Function to draw the outer boundary
+def draw_boundary(size, x, y):
+    pen.penup()
+    pen.goto(x, y)
+    pen.pendown()
+    pen.color("black")
+    for _ in range(4):
+        pen.forward(size)
+        pen.right(90)
+
+# Drawing the outer boundary
+draw_boundary(320, -160, 120)
+draw_boundary(360,-180,140)
+
+# Drawing the checkerboard pattern within the outer boundary
+size = 40  # Size of each square
+num_rows = 8
+num_cols = 8
+for row in range(num_rows):
+    for col in range(num_cols):
+        if (row + col) % 2 == 0:
+            draw_square("black", size, col * size - 160, row * size - 160)
+
+
+# Hide the turtle and display the result
+pen.hideturtle()
+screen.mainloop()
+#And its all done
+#Hope it works
