@@ -1,0 +1,48 @@
+import turtle
+
+# Set up the screen
+screen = turtle.Screen()
+screen.bgcolor("sky blue")
+screen.title("Snowflake")
+
+# Create a turtle for drawing
+snowflake = turtle.Turtle()
+snowflake.speed(10)  # Set the drawing speed to the fastest
+snowflake.color("white")  # Set the color of the snowflake
+
+# Define a function to draw a Koch snowflake edge
+def koch_edge(length, depth):
+  #  snowflake.begin_fill()
+    if depth == 0:
+        snowflake.forward(length)
+    else:
+        koch_edge(length / 3, depth - 1)
+        snowflake.left(60)
+        koch_edge(length / 3, depth - 1)
+        snowflake.right(120)
+        koch_edge(length / 3, depth - 1)
+        snowflake.left(60)
+        koch_edge(length / 3, depth - 1)
+ #   snowflake.end_fill()
+
+# Define a function to draw a Koch snowflake
+def koch_snowflake(length, depth):
+    for _ in range(3):
+     #   snowflake.begin_fill()
+        koch_edge(length, depth)
+        snowflake.right(120)
+       # snowflake.end_fill()
+
+# Move the turtle to the starting position
+snowflake.penup()
+snowflake.goto(-150, 150)
+snowflake.pendown()
+
+# Draw the Koch snowflake
+koch_snowflake(300, 1)
+
+# Hide the turtle
+snowflake.hideturtle()
+
+# Keep the window open
+screen.mainloop()
